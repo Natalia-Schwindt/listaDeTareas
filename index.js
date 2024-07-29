@@ -23,23 +23,30 @@ const agregarTarea = () => {
     let itemLista = document.createElement('li'); //Crea un nuevo elemento li.
     itemLista.innerText = capturarValue; //Asigna el valor capturado del input, al elemento li.
 
+    let botonEditar = document.createElement('button'); //Crea el botón editar.
+    botonEditar.innerText = 'Editar'; //Agrega el texto al botón.
+    botonEditar.addEventListener('click', () => {
+        let nuevoTextoTarea = prompt('Edita el texto de la tarea:', capturarValue);
+        if (nuevoTextoTarea !== null) { //Verifica si el usuario cancela la edición.
+            itemLista.innerText = nuevoTextoTarea; //Actualiza el texto del elemento li con el nuevo valor.
+            itemLista.append(botonEditar); //Vuelve a añadir el botón editar al li.
+            itemLista.append(botonEliminar); //Vuelve a añadir el botón eliminar al li.
+            itemLista.append(checkList); //Vuelve a añadir el checkbox al elemento li.
+        }
+    });
+
     let botonEliminar = document.createElement('button'); //Crea el botón eliminar.
     botonEliminar.innerText = 'Eliminar'; //Agrega el texto al botón.
     botonEliminar.addEventListener('click', () => {
         listaTareas.removeChild(itemLista); //Elimina el elemento de la lista, cuando se hace clic en el botón eliminar.
     });
 
-    let botonEditar = document.createElement('button'); //Crea el botón editar.
-    botonEditar.innerText = 'Editar'; //Agrega el texto al botón.
-    botonEditar.addEventListener('click', () => {
-        let nuevoTextoTarea = prompt('Edita el texto de la tarea:', capturarValue);
-        itemLista.innerText = nuevoTextoTarea; //Actualiza el texto del elemento li con el nuevo valor.
-        itemLista.append(botonEditar); //Vuelve a añadir el botón editar al li.
-        itemLista.append(botonEliminar); //Vuelve a añadir el botón eliminar al li.
-    });
+    let checkList = document.createElement('input');
+    checkList.type = 'checkbox';
 
     itemLista.append(botonEditar); //Añade el botón editar al elemento li.
     itemLista.append(botonEliminar); //Añade el botón eliminar al elemento li.
+    itemLista.append(checkList); // Añade el checkbox al elemento li.
     listaTareas.append(itemLista); //Añade el elemento li, a la lista desordenada.
 
     document.getElementById('inputTarea').value = ''; //Limpia el input.
