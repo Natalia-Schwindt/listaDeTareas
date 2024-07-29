@@ -1,0 +1,13 @@
+label{
+    display: block;
+    margin: 10px;
+}
+input{
+    margin: 5px;
+}
+li{
+    list-style: none;
+}
+button{
+    margin: 5px;
+}
